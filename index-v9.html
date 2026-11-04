@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1420">
+<title>Training HQ V9 · Einfach trainieren</title>
+<style>:root{color-scheme:dark;--bg:#09131d;--surface:#101e2a;--surface2:#142635;--surface3:#1b3040;--stroke:#2b4354;--text:#eef6fa;--muted:#96aab8;--accent:#73e8b6;--blue:#6bbef3;--green:#49c98b;--red:#f07885;--yellow:#f2c45c;--purple:#bf9ef1;--r:17px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -2%,#193144 0,transparent 27%),var(--bg);color:var(--text);min-height:100vh;font-size:14px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}input,select,textarea{color:var(--text);background:#0e1d29;border:1px solid #344a59;border-radius:10px;min-height:42px;padding:10px 11px;width:100%}input::placeholder,textarea::placeholder{color:#718996}select{cursor:pointer}input[type=checkbox]{width:17px;min-height:17px;accent-color:var(--accent)}textarea{resize:vertical;line-height:1.6}h1,h2,h3,h4,p{margin-top:0}h1{font-size:29px;letter-spacing:-.05em;margin:3px 0 0}h2{font-size:21px;letter-spacing:-.045em;margin-bottom:5px}h3{font-size:16px;letter-spacing:-.025em;margin:0}h4{margin:0 0 9px}p{line-height:1.55}code{font-size:12px;background:#213444;padding:2px 5px;border-radius:5px;color:#d5f2e2}.hidden{display:none!important}.sub{font-size:11px;color:var(--muted);line-height:1.5}.hint{font-size:12px;color:var(--muted);line-height:1.6;margin:12px 0 16px}.divider{height:1px;background:var(--stroke);margin:22px 0}.eyebrow{font-size:10px;letter-spacing:.17em;font-weight:850;color:var(--accent)}.main{margin-left:232px;padding:29px clamp(18px,3.6vw,56px) 110px;min-width:0;max-width:1570px}.sidebar{width:232px;position:fixed;left:0;top:0;bottom:0;z-index:50;background:#0e1b27;border-right:1px solid #284052;display:flex;flex-direction:column;gap:20px;padding:25px 15px 16px}.brand{display:flex;align-items:center;gap:10px;padding:5px 9px 18px;border-bottom:1px solid #284052}.brandicon{width:37px;height:37px;background:var(--accent);color:#09241a;font-size:22px;font-weight:1000;border-radius:11px;display:grid;place-items:center;box-shadow:0 3px 16px #73e8b62c;flex:none}.brandtext{line-height:1.15}.brandtext b{font-size:13px;letter-spacing:-.01em}.brandtext small{display:block;margin-top:4px;color:#8db0b2;font-size:9px;letter-spacing:.11em;font-weight:800}.nav{display:flex;flex-direction:column;gap:5px}.nav button{color:#a9bdc8;border:0;background:transparent;text-align:left;padding:12px 12px;display:flex;gap:13px;align-items:center;border-radius:11px;font-weight:700;font-size:13px;transition:background .15s,color .15s;min-height:47px}.nav button:hover{color:white;background:#172f3e}.nav button.active{background:#21453b;color:#9dffd0}.navico{font-size:22px;width:24px;display:inline-flex;justify-content:center;line-height:1;flex:none}.navlabel{white-space:nowrap}.sidebarbottom{margin-top:auto;display:flex;flex-direction:column;gap:16px}.sidequick{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--accent);color:#082319;border:0;border-radius:12px;font-weight:800;padding:13px;font-size:14px}.localhint{font-size:10px;text-align:center;color:#6d8e99}.localhint::first-letter{color:var(--green)}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:30px}.topactions,.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.datechip{border:1px solid var(--stroke);border-radius:9px;padding:8px 10px;color:#b7c9d3;font-size:11px;white-space:nowrap}.btn{background:#1b3140;color:var(--text);border:1px solid #365160;border-radius:11px;padding:10px 14px;font-weight:700;font-size:12px;line-height:1.3}.btn:hover{background:#274455}.btn.primary{background:var(--accent);color:#10271d;border-color:var(--accent)}.btn.primary:hover{background:#a3f5d4}.btn.small{padding:7px 10px}.btn.danger{background:#40262e;border-color:#7a404b;color:#ffc5ce}.textlink{padding:4px;color:var(--accent);background:none;border:0;font-size:12px;font-weight:750}.page{display:none}.page.active{display:block}.sectionhead{display:flex;justify-content:space-between;gap:15px;align-items:end;margin-bottom:20px}.sectionhead p{font-size:12px;color:var(--muted);margin:0}.card{background:linear-gradient(150deg,#132331,#101d29);border:1px solid var(--stroke);border-radius:var(--r);padding:21px;min-width:0;box-shadow:0 7px 22px #050c1320}.cardhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}.statsgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}.stat{background:linear-gradient(150deg,#162b39,#10212d);border:1px solid var(--stroke);border-radius:var(--r);padding:18px;min-width:0}.stat .label{font-size:11px;color:var(--muted);display:flex;gap:7px;align-items:center}.stat strong{display:block;font-weight:900;font-size:32px;letter-spacing:-.05em;margin:9px 0 6px}.stat strong small{font-size:12px;font-weight:500;color:var(--muted)}.stat .foot{font-size:11px;color:var(--muted);line-height:1.5}.dashgrid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(280px,.82fr);gap:15px}.stack{display:flex;flex-direction:column;gap:15px;min-width:0}.goallist{display:flex;flex-direction:column;gap:18px}.goalitem{display:flex;flex-direction:column;gap:7px}.goalhead{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px}.goalhead b{font-weight:720}.goalhead span{color:#b8c8d2;font-weight:750;font-variant-numeric:tabular-nums}.goalfoot{font-size:10.5px;color:var(--muted)}.track{height:8px;border-radius:99px;background:#2c4050;overflow:hidden}.track i{display:block;height:100%;background:var(--accent);border-radius:99px}.track .red{background:var(--red)}.track .green{background:var(--green)}.track .yellow{background:var(--yellow)}.track .blue{background:var(--blue)}.rowentry{display:flex;align-items:center;gap:11px;background:#172a39;border:1px solid #294253;border-radius:11px;padding:10px 11px;margin-bottom:7px;min-width:0}.rowentry .eicon{height:33px;width:33px;border-radius:10px;display:grid;place-items:center;background:#263d4a;flex:none;font-size:17px}.rowentry .ebody{flex:1;min-width:0}.rowentry .ebody b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rowentry .ebody small{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.45}.rowentry .eactions{display:flex;gap:5px}.iconbutton{font-size:13px;background:#253a49;border:1px solid #3b5261;color:#cadddf;border-radius:8px;padding:7px;min-width:28px}.empty{font-size:12px;color:var(--muted);padding:17px;border:1px dashed #34505e;border-radius:12px;text-align:center}.typegrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:18px}.typebtn{min-height:70px;padding:10px 5px;border:1px solid #344d5b;border-radius:12px;background:#152a39;color:#b4c8d2;font-size:12px;font-weight:750;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px}.typebtn.selected{border-color:var(--accent);background:#21463d;color:#baffdc}.typeicon{display:block;font-size:13px}.red{color:var(--red)}.green{color:var(--green)}.yellow{color:var(--yellow)}.purple{color:var(--purple)}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:14px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field>span{font-size:11px;color:#b5cad4;font-weight:730}.field em{font-weight:450;color:#8ea5b1;font-style:normal}.typefields{margin:19px 0}.sethead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:19px 0 9px}.sethead b{font-size:12px}.sethead span{color:var(--muted);font-size:10.5px}.setrows{display:flex;flex-direction:column;gap:7px;margin-bottom:9px}.setrow{display:grid;grid-template-columns:22px 1fr 1fr 32px;gap:8px;align-items:center}.setrow span{font-size:11px;color:var(--muted);text-align:center}.setrow input{font-variant-numeric:tabular-nums}.setrow .remove{border:0;background:#2f3340;color:#ebadb5;border-radius:8px;height:38px}.formend{display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--stroke);padding-top:17px;margin-top:17px}.smartcard{margin-top:16px}.smartcard textarea{margin-bottom:10px}.smart-row{display:flex;gap:9px;align-items:center;justify-content:space-between;border:1px solid var(--stroke);border-radius:9px;padding:9px;margin-top:8px;font-size:12px}.smart-row select,.smart-row input{width:auto;max-width:60%;min-height:34px}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.weekday{text-align:center;color:var(--muted);font-size:10px;padding:4px 0 9px;font-weight:850}.day{min-height:95px;text-align:left;display:flex;flex-direction:column;gap:7px;padding:10px 9px;border:1px solid var(--stroke);border-radius:10px;background:#152635;color:var(--text);min-width:0}.day:hover{background:#1d3645}.day.other{opacity:.36}.day.today{border-color:#55a786}.day.active{border-color:var(--accent);background:#1e4038}.daynumber{font-weight:850;font-size:13px}.daytags{display:flex;gap:3px;flex-wrap:wrap}.daytag{font-size:9px;display:inline-flex;gap:2px;align-items:center;background:#2c4351;border-radius:5px;padding:3px 4px;line-height:1.1}.daytag b{font-size:9px}.daytag.redtag{background:#54323b;color:#ffc2c7}.daytag.greentag{background:#21503c;color:#bdf5d6}.daytag.bluetag{background:#1f4763;color:#b5e7ff}.daytag.yellowtag{background:#51452b;color:#ffe5ad}.daytag.purplet{background:#403459;color:#e8d8ff}.planpill{display:inline-block;font-size:10px;border:1px dashed #d7ae5a;color:#f9de9b;border-radius:7px;padding:4px 6px;margin:4px}.planrow{display:flex;gap:9px;align-items:center;justify-content:space-between;padding:10px;margin:7px 0;background:#1b2d38;border:1px dashed #6c6048;border-radius:11px;font-size:12px}.ministats{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:19px}.ministats span{background:#1c3342;border-radius:9px;padding:8px 10px;font-size:11px;color:#bfced7}.ministats b{color:var(--text)}.histday{margin:17px 0}.histday h4{font-size:12px;margin-bottom:9px;color:#a8c9c9}.chartbox{width:100%;max-width:100%;overflow:hidden;padding-top:16px}.chartbox svg{width:100%;height:auto;display:block}.chartcaption{font-size:11px;color:var(--muted);margin:8px 0}.settingsgrid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:15px}.goaledit{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:8px;align-items:center;margin:10px 0;padding:6px 0;border-bottom:1px solid #223847}.goaledit span{font-size:12px}.goaledit small{font-size:10px;color:var(--muted);display:block}.goaledit input{min-height:36px;padding:7px}.exerciseedit{display:grid;grid-template-columns:22px minmax(0,1fr) minmax(0,.8fr) 80px;align-items:center;gap:7px;margin:9px 0}.exerciseedit input,.exerciseedit select{min-height:36px;padding:7px;font-size:11px}.exerciseedit .excheck{width:17px;min-height:17px}.exerciseedit .tinycheck{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;color:var(--muted);font-size:9px}.exerciseedit .tinycheck input{min-height:16px;width:16px;margin:0}.notice{background:#372b21;border:1px solid #776044;color:#ffe6bc;padding:12px 15px;border-radius:10px;font-size:12px;margin-bottom:14px;line-height:1.5}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:130;background:#e7fff0;color:#0e3826;font-weight:800;border-radius:11px;box-shadow:0 9px 30px #0008;padding:12px 17px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}.toast.visible{opacity:1}.dialogform{display:flex;flex-direction:column;gap:11px}dialog{border:1px solid #466575;border-radius:18px;background:#11222f;color:var(--text);padding:20px;max-width:480px;width:calc(100% - 30px);box-shadow:0 25px 75px #0008}dialog::backdrop{background:#000a}.pill{display:inline-block;background:#29433c;color:#adf6d0;font-size:10px;padding:3px 7px;border-radius:6px}.legacybox{background:#1a2b3a;border:1px solid #304c5a;padding:11px;border-radius:9px;font-size:11px;line-height:1.55;color:var(--muted);margin:10px 0}
+@media(max-width:1020px){.sidebar{width:65px;padding:19px 8px}.brand{padding:5px 3px 15px;justify-content:center}.brandtext,.navlabel,.sidequick span,.localhint{display:none}.nav button{justify-content:center;padding:11px 0}.sidequick{height:44px;padding:0;font-size:23px}.main{margin-left:65px;padding:24px 19px 90px}.dashgrid,.settingsgrid{grid-template-columns:1fr}.statsgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.typegrid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:620px){body{font-size:13px}.sidebar{width:56px;padding:13px 5px}.brandicon{height:33px;width:33px;font-size:19px}.nav{gap:7px}.nav button{min-height:46px;padding:8px 0}.navico{font-size:21px}.main{margin-left:56px;padding:17px 12px 90px}.topbar{margin-bottom:22px}.topbar h1{font-size:23px}.datechip{padding:7px 6px;font-size:10px}.topactions>.datechip{display:none}.topactions .btn span{display:none}.sectionhead{align-items:flex-start;flex-direction:column;gap:11px}.sectionhead .actions{max-width:100%}.card{padding:14px;border-radius:13px}.statsgrid{gap:8px}.stat{padding:12px;min-height:95px}.stat strong{font-size:26px}.stat .label{font-size:10px}.stat .foot{font-size:10px}.typegrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.typebtn{font-size:10px;min-height:62px;padding:6px 2px}.formgrid{grid-template-columns:1fr;gap:9px}.field input,.field select,.field textarea{min-height:39px;font-size:13px}.setrow{grid-template-columns:15px 1fr 1fr 28px;gap:5px}.calendar{gap:3px}.weekday{font-size:9px}.day{min-height:62px;padding:5px 3px;gap:4px;border-radius:6px}.daynumber{font-size:10px}.daytags{gap:2px}.daytag{font-size:8px;padding:2px 3px}.daytag b{font-size:8px}.daytag:nth-child(n+3){display:none}.exerciseedit{grid-template-columns:18px minmax(0,1fr) minmax(0,.72fr) 40px;gap:4px}.exerciseedit input,.exerciseedit select{font-size:10px;padding:5px}.exerciseedit .tinycheck{font-size:8px}.chartbox{padding-top:8px}.btn{padding:9px 10px}.rowentry .eicon{width:28px;height:28px}.rowentry{gap:7px;padding:8px}}
+</style>
+</head>
+<body>
+<aside class="sidebar" aria-label="Hauptnavigation">
+  <div class="brand"><div class="brandicon">H</div><span class="brandtext"><b>TRAINING HQ</b><small>V9 · SIMPLIFIED</small></span></div>
+  <nav id="nav" class="nav">
+    <button data-page="dashboard" class="active" title="Übersicht" aria-label="Übersicht"><span class="navico">▦</span><span class="navlabel">Übersicht</span></button>
+    <button data-page="add" title="Training eintragen" aria-label="Eintragen"><span class="navico">＋</span><span class="navlabel">Eintragen</span></button>
+    <button data-page="calendar" title="Kalender" aria-label="Kalender"><span class="navico">▦</span><span class="navlabel">Kalender</span></button>
+    <button data-page="history" title="Verlauf" aria-label="Verlauf"><span class="navico">☷</span><span class="navlabel">Verlauf</span></button>
+    <button data-page="progress" title="Fortschritt" aria-label="Fortschritt"><span class="navico">↗</span><span class="navlabel">Fortschritt</span></button>
+    <button data-page="settings" title="Ziele & Plan" aria-label="Ziele und Plan"><span class="navico">◎</span><span class="navlabel">Ziele & Plan</span></button>
+    <button data-page="data" title="Daten & Backup" aria-label="Daten und Backup"><span class="navico">⇩</span><span class="navlabel">Daten & Backup</span></button>
+  </nav>
+  <div class="sidebarbottom"><span class="localhint">● Lokal auf diesem Gerät</span></div>
+</aside>
+<main class="main">
+  <header class="topbar"><div><div class="eyebrow">TRAINING · OHNE BALLAST</div><h1 id="pageTitle">Übersicht</h1></div><div class="topactions"><span class="datechip" id="topDate"></span><button class="btn primary" id="topAdd">＋ <span>Eintragen</span></button></div></header>
+  <div class="notice hidden" id="storageNotice">Dein Browser blockiert das lokale Speichern. Bitte verwende einen normalen Browser und sichere Einträge als JSON.</div>
+  <div class="notice hidden" id="migrationNotice"></div>
+
+  <section id="page-dashboard" class="page active">
+    <div class="sectionhead"><div><h2>Deine Woche</h2><p>Flexible Satzziele statt fester Trainingstage.</p></div><div class="actions"><button class="btn small" id="dashPrev" title="Vorherige Woche">←</button><span id="dashWeekLabel" class="datechip"></span><button class="btn small" id="dashNext" title="Nächste Woche">→</button><button class="btn small" id="dashToday">Heute</button></div></div>
+    <div class="statsgrid" id="heroStats"></div>
+    <div class="dashgrid"><div class="card"><div class="cardhead"><h3>Wochenziele</h3><button class="textlink" data-jump="settings">Bearbeiten</button></div><div id="goalBars" class="goallist"></div><p class="hint">Ziele sind Richtwerte. Ein Satz zählt zur Hauptmuskelgruppe – keine Doppelzählung.</p></div>
+    <div class="stack"><div class="card"><div class="cardhead"><h3>Zuletzt trainiert</h3><button class="textlink" data-jump="history">Verlauf</button></div><div id="recentEntries"></div></div><div class="card"><div class="cardhead"><h3>Geplantes</h3><button class="textlink" data-jump="calendar">Kalender</button></div><div id="upcomingPlans"></div></div></div></div>
+  </section>
+
+  <section id="page-add" class="page">
+    <div class="sectionhead"><div><h2>Training eintragen</h2><p>Nur das erfassen, was du tatsächlich gemacht hast.</p></div></div>
+    <div class="card entrycard"><div class="typegrid" id="entryTypes">
+      <button class="typebtn selected" data-type="strength"><span class="typeicon red">●</span>Kraftübung</button>
+      <button class="typebtn" data-type="group"><span class="typeicon red">●</span>Muskelgruppe</button>
+      <button class="typebtn" data-type="sport"><span class="typeicon green">●</span>Laufen / Fußball</button>
+      <button class="typebtn" data-type="session"><span class="typeicon yellow">●</span>Session</button>
+      <button class="typebtn" data-type="test"><span class="typeicon purple">●</span>Skill / Test</button>
+    </div>
+    <form id="entryForm" autocomplete="off">
+      <input id="editId" type="hidden">
+      <div class="formgrid"><label class="field"><span>Datum</span><input id="entryDate" type="date" required></label><label class="field"><span>Notiz <em>optional</em></span><input id="entryNote" maxlength="300" placeholder="z. B. kurze Schichtpause"></label></div>
+      <div id="strengthFields" class="typefields"><label class="field"><span>Übung</span><select id="exerciseSelect"></select></label><div class="sethead"><b>Arbeitssätze</b><span>Je Satz Wdh. und ggf. Gewicht</span></div><div id="setRows" class="setrows"></div><button type="button" id="addSet" class="btn small">＋ Satz hinzufügen</button></div>
+      <div id="groupFields" class="typefields hidden"><div class="formgrid"><label class="field"><span>Muskelgruppe</span><select id="groupMuscle"></select></label><label class="field"><span>Anzahl Sätze</span><input id="groupCount" type="number" min="1" max="100" value="1"></label></div><p class="hint">Für spontane Übungen: keine Übung auswählen, nur die trainierte Muskelgruppe und Satzanzahl eintragen.</p></div>
+      <div id="sportFields" class="typefields hidden"><div class="formgrid"><label class="field"><span>Sport</span><select id="sportKind"><option value="football">⚽ Fußball</option><option value="zone2">🏃 Zone-2-Lauf</option><option value="interval">🏃 Intervalllauf</option><option value="run">🏃 Anderer Lauf</option></select></label><label class="field"><span>Distanz (km)</span><input id="sportKm" type="number" step="0.01" min="0" max="500" inputmode="decimal" placeholder="z. B. 10,01"></label><label class="field"><span>Dauer (Minuten oder HH:MM:SS)</span><input id="sportDuration" placeholder="z. B. 63:19 oder 1:03:19"></label><label class="field"><span>Ø Puls (bpm)</span><input id="sportHr" type="number" min="30" max="240" placeholder="optional"></label><label class="field"><span>Höhenmeter</span><input id="sportElev" type="number" min="0" max="20000" placeholder="optional"></label><label class="field"><span>Pace (min/km)</span><input id="sportPace" placeholder="optional / Strava-Wert"></label></div>
+      <div id="footballExtra" class="formgrid"><label class="field"><span>Position</span><input id="footballPosition" list="positions" placeholder="z. B. Außenverteidiger"><datalist id="positions"><option value="Torwart"><option value="Innenverteidiger"><option value="Außenverteidiger"><option value="Defensives Mittelfeld"><option value="Zentrales Mittelfeld"><option value="Offensives Mittelfeld"><option value="Flügel"><option value="Stürmer"></datalist></label><label class="field"><span>Tore</span><input id="footballGoals" type="number" min="0" max="100" placeholder="optional"></label><label class="field"><span>Assists</span><input id="footballAssists" type="number" min="0" max="100" placeholder="optional"></label></div><p class="hint">Strava-Werte lassen sich hier direkt eintragen. Fehlende Werte bleiben leer.</p></div>
+      <div id="sessionFields" class="typefields hidden"><div class="formgrid"><label class="field"><span>Session</span><select id="sessionKind"><option value="mobility">Mobilität</option><option value="plyo">Plyometrics</option><option value="functional">Funktionalität</option></select></label><label class="field"><span>Dauer in Minuten <em>optional</em></span><input id="sessionMinutes" type="number" min="0" max="1440" placeholder="z. B. 10"></label></div><p class="hint">Eine Session = ein Haken beim Wochenziel. Keine Einzelübungen und kein Fortschrittsdiagramm.</p></div>
+      <div id="testFields" class="typefields hidden"><label class="field"><span>Skill oder Leistungstest</span><select id="testSelect"></select></label><div id="testEditor"></div></div>
+      <div class="formend"><button type="button" class="btn" id="cancelEdit">Zurücksetzen</button><button type="submit" class="btn primary" id="saveEntry">✓ Training speichern</button></div>
+    </form></div>
+    <div class="card smartcard"><div class="cardhead"><h3>⚡ Schnelle Texteingabe</h3><span class="sub">Lokal · ohne KI-Dienst</span></div><p class="hint">Ein Satz pro Zeile ist möglich. Beispiele: <code>Klimmzüge 12, 11, 10</code>, <code>Brust 3 Sätze</code>, <code>Seitheben 6kg x 16</code>, <code>Fußball 14km 2 Tore 3 Assists</code>.</p><textarea id="quickText" rows="3" placeholder="Klimmzüge 12, 11, 10&#10;Brust 2 Sätze"></textarea><div class="actions"><button type="button" class="btn" id="parseQuick">Einträge erkennen</button><button type="button" class="btn primary hidden" id="saveQuick">✓ Vorschau speichern</button></div><div id="quickPreview"></div></div>
+  </section>
+
+  <section id="page-calendar" class="page"><div class="sectionhead"><div><h2>Kalender</h2><p>Training und Vorplanung, ohne doppelte Symbole.</p></div><div class="actions"><button class="btn small" id="monthPrev">←</button><span class="datechip" id="monthLabel"></span><button class="btn small" id="monthNext">→</button><button class="btn small" id="monthToday">Heute</button></div></div><div class="card"><div id="calendarGrid" class="calendar"></div><p class="hint">Das kleine Symbol mit Zahl zeigt die erfassten Sätze beziehungsweise Einheiten dieses Tages.</p></div><div class="card" style="margin-top:15px"><div class="cardhead"><div><h3 id="selectedDateLabel">Einträge</h3><p class="sub">Alle Aktivitäten an diesem Tag</p></div><div class="actions"><button class="btn small" id="addForDate">＋ Training</button><button class="btn small" id="newPlan">＋ Plan</button></div></div><div id="calendarDayEntries"></div><div id="calendarDayPlans"></div></div></section>
+  <section id="page-history" class="page"><div class="sectionhead"><div><h2>Verlauf</h2><p>Deine Trainingseinträge, chronologisch und bearbeitbar.</p></div><div class="actions"><button class="btn small" id="historyPrev">←</button><span class="datechip" id="historyLabel"></span><button class="btn small" id="historyNext">→</button></div></div><div class="card"><div id="historyTotals" class="ministats"></div><div id="historyEntries"></div></div></section>
+  <section id="page-progress" class="page"><div class="sectionhead"><div><h2>Fortschritt</h2><p>Gemeinsame Laufkilometer und die Leistungen, die dich interessieren.</p></div></div><div class="card"><div class="cardhead"><h3>🏃 + ⚽ Kilometer pro Woche</h3><span class="sub">Läufe + Fußball, zusammen</span></div><div id="kmChart"></div></div><div class="card" style="margin-top:15px"><div class="cardhead"><h3>Übungsfortschritt</h3><span class="sub">Keine Pace-Kurve, keine Diagramme für Face Pulls oder Sessions</span></div><div class="formgrid"><label class="field"><span>Übung / Test</span><select id="progressExercise"></select></label><label class="field"><span>Zeitraum</span><select id="progressWindow"><option value="8">8 Wochen</option><option value="16" selected>16 Wochen</option><option value="32">32 Wochen</option><option value="52">52 Wochen</option></select></label></div><div id="exerciseChart"></div><div id="progressDetail"></div></div></section>
+  <section id="page-settings" class="page"><div class="sectionhead"><div><h2>Ziele & Trainingsplan</h2><p>Alle Vorgaben und regelmäßigen Übungen jederzeit änderbar.</p></div></div><div class="settingsgrid"><div class="card"><div class="cardhead"><h3>Wöchentliche Zielwerte</h3></div><p class="hint">Die Sätze gelten für Muskelgruppen. Bankdrücken zählt beispielsweise zur Brust, Kniebeugen zu den Beinen.</p><div id="goalSettings"></div><button class="btn primary" id="saveGoals">Ziele speichern</button></div><div class="card"><div class="cardhead"><h3>Regelmäßige Übungen</h3></div><p class="hint">Nur aktive Übungen erscheinen beim Eintragen. Du kannst Namen, Hauptmuskelgruppe und Diagramme ändern; alte Einträge bleiben gespeichert.</p><div id="exerciseSettings"></div><div class="divider"></div><h4>Übung hinzufügen</h4><div class="formgrid"><label class="field"><span>Name</span><input id="newExName" maxlength="60" placeholder="z. B. Rudern"></label><label class="field"><span>Muskelgruppe</span><select id="newExMuscle"></select></label><label class="field"><span>Messung</span><select id="newExMetric"><option value="weighted">Gewicht + Wdh.</option><option value="reps">Nur Wiederholungen</option></select></label><label class="field"><span>Diagramm</span><select id="newExChart"><option value="1">Ja</option><option value="0">Nein</option></select></label></div><button class="btn small" id="addNewExercise">＋ Übung ergänzen</button></div></div></section>
+  <section id="page-data" class="page"><div class="sectionhead"><div><h2>Daten & Sicherung</h2><p>Alles bleibt lokal auf deinem Gerät.</p></div></div><div class="card"><h3>Deine Trainingsdaten</h3><p class="hint" id="dataSummary"></p><div class="actions"><button class="btn primary" id="exportBackup">↓ JSON-Backup speichern</button><button class="btn" id="importBackup">↑ Backup importieren</button><input id="backupFile" class="hidden" type="file" accept=".json,application/json"></div><div class="divider"></div><h3>Übernahme aus V8</h3><p class="hint" id="migrationDetails"></p><div class="actions"><button class="btn" id="inspectLegacy">Alte Daten prüfen</button><button class="btn" id="redoLegacy">Alte Daten erneut übernehmen</button></div><div id="legacySummary"></div><div class="divider"></div><h3>Speicher</h3><p class="hint">V9 nutzt einen neuen lokalen Speicherbereich. Dein bisheriger V8-Speicher wird nicht gelöscht. Beim Leeren des Browsers können lokale Einträge jedoch verloren gehen; sichere regelmäßig eine JSON-Datei.</p><button class="btn danger" id="eraseV9">V9-Daten zurücksetzen</button></div></section>
+</main>
+<dialog id="planDialog"><form method="dialog" id="planForm" class="dialogform"><div class="cardhead"><h3>Training vorplanen</h3><button type="button" id="closePlan" class="btn small">✕</button></div><p class="hint">Pläne zählen erst, wenn du die Einheit tatsächlich einträgst.</p><label class="field"><span>Datum</span><input type="date" id="planDate" required></label><label class="field"><span>Trainingsart</span><select id="planType"><option value="strength">Krafttraining</option><option value="football">Fußball</option><option value="zone2">Zone-2-Lauf</option><option value="interval">Intervalllauf</option><option value="mobility">Mobilität</option><option value="plyo">Plyometrics</option><option value="functional">Funktionalität</option><option value="rest">Ruhetag</option></select></label><label class="field"><span>Notiz</span><input id="planTitle" maxlength="100" placeholder="optional"></label><div class="formend"><button type="button" class="btn" id="cancelPlan">Abbrechen</button><button class="btn primary" type="submit">Plan speichern</button></div></form></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>'use strict';
+// Training HQ V9. Keine externen Bibliotheken; V8 bleibt im eigenen Speicherschlüssel unverändert.
+const KEY='training-hq-v9-data', OLD_KEY='training-hq-v2-data';
+const muscleLabels={chest:'Brust',back:'Rücken',lateral_shoulder:'Seitliche Schulter',front_shoulder:'Vordere Schulter',rear_shoulder:'Hintere Schulter',triceps:'Trizeps',biceps:'Bizeps',forearms:'Unterarme',quads:'Quadrizeps',hamstrings:'Hamstrings',glutes:'Gesäß',calves:'Waden',adductors:'Adduktoren',abductors:'Abduktoren',core:'Core / Bauch',lower_back:'Unterer Rücken',neck:'Nacken',rotator_cuff:'Rotatorenmanschette',arms:'Arme allgemein',shoulders:'Schultern allgemein',legs:'Beine allgemein'};
+const lowerMuscles=new Set(['quads','hamstrings','glutes','calves','adductors','abductors','legs']);
+const exerciseDefaults=[
+{id:'pushup',name:'Liegestütze',muscle:'chest',metric:'reps',chart:true,active:true},
+{id:'pullup',name:'Klimmzüge',muscle:'back',metric:'reps',chart:true,active:true},
+{id:'lateral_raise',name:'Seitheben',muscle:'lateral_shoulder',metric:'weighted',chart:true,active:true},
+{id:'triceps',name:'Trizeps über Kopf',muscle:'triceps',metric:'weighted',chart:true,active:true},
+{id:'biceps',name:'Bizepscurls',muscle:'biceps',metric:'weighted',chart:true,active:true},
+{id:'face_pull',name:'Face Pulls',muscle:'rear_shoulder',metric:'weighted',chart:false,active:true},
+{id:'leg_press',name:'Beinpresse',muscle:'quads',metric:'weighted',chart:true,active:true},
+{id:'squat',name:'Kniebeugen',muscle:'quads',metric:'weighted',chart:true,active:true},
+{id:'crunch',name:'Crunchmaschine',muscle:'core',metric:'weighted',chart:true,active:true},
+{id:'bench',name:'Bankdrücken',muscle:'chest',metric:'weighted',chart:true,active:true}
+];
+const testDefs={handstand:{name:'Handstand',unit:'Sek.',label:'Bester Versuch (Sekunden)'},muscleup:{name:'Muscle-up',unit:'Wdh.',label:'Wiederholungen (bester Satz)'},jump:{name:'Standweitsprung',unit:'cm',label:'Beste Weite (cm)'},plank:{name:'Plank',unit:'Sek.',label:'Beste Haltezeit (Sekunden)'}};
+const goalDefaults={chest:10,back:10,lateral_shoulder:4,triceps:4,biceps:4,face_pull:2,legs:2,quads:1,hamstrings:1,core:6,football:1,endurance:2,mobility:2,plyo:1};
+const goalMeta=[
+ {key:'chest',name:'Brust',unit:'Sätze',type:'strength'},
+ {key:'back',name:'Rücken',unit:'Sätze',type:'strength'},
+ {key:'lateral_shoulder',name:'Seitliche Schulter',unit:'Sätze',type:'strength'},
+ {key:'triceps',name:'Trizeps',unit:'Sätze',type:'strength'},
+ {key:'biceps',name:'Bizeps',unit:'Sätze',type:'strength'},
+ {key:'face_pull',name:'Face Pulls',unit:'Sätze',type:'strength'},
+ {key:'legs',name:'Beine gesamt',unit:'Sätze',type:'strength'},
+ {key:'quads',name:'Davon Quadrizeps / Kniebeuge',unit:'Sätze',type:'strength',sub:true},
+ {key:'hamstrings',name:'Davon Hamstrings',unit:'Sätze',type:'strength',sub:true},
+ {key:'core',name:'Core',unit:'Sätze',type:'strength'},
+ {key:'football',name:'Fußball',unit:'Einheiten',type:'sport'},
+ {key:'endurance',name:'Fußball + Laufen',unit:'Einheiten',type:'sport'},
+ {key:'mobility',name:'Mobilität',unit:'Sessions',type:'session'},
+ {key:'plyo',name:'Plyometrics',unit:'Sessions',type:'session'}
+];
+const $=id=>document.getElementById(id), $$=(sel,base=document)=>Array.from(base.querySelectorAll(sel));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clone=o=>JSON.parse(JSON.stringify(o));
+const num=v=>Number(String(v??'').trim().replace(',','.'));
+const uid=()=>`v9-${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
+const today=()=>iso(new Date());
+const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+const dateObj=s=>new Date(s+'T12:00:00');
+const shift=(s,n)=>{const d=dateObj(s);d.setDate(d.getDate()+n);return iso(d)};
+const monday=s=>shift(s,-(dateObj(s).getDay()+6)%7);
+const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(String(s))&&!Number.isNaN(dateObj(s).getTime());
+const humanDate=s=>dateObj(s).toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
+const monthDate=s=>dateObj(s+'-01').toLocaleDateString('de-DE',{month:'long',year:'numeric'});
+const fmt=(v,d=1)=>Number(v||0).toLocaleString('de-DE',{maximumFractionDigits:d});
+const sensible=x=>Number.isFinite(+x)&&+x>=0;
+const defaults=()=>({schema:9,entries:[],plans:[],goals:clone(goalDefaults),exercises:clone(exerciseDefaults),migration:{source:'new',converted:0},legacyExtras:{}});
+let store, storageOK=true, selected=today(), dashWeek=monday(today()), historyWeek=monday(today()), calendarMonth=today().slice(0,7), page='dashboard', entryType='strength', quickDraft=[], toastTimer;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));storageOK=true}catch(err){storageOK=false}$('storageNotice').classList.toggle('hidden',storageOK)}
+function getOld(){try{let raw=localStorage.getItem(OLD_KEY);return raw?JSON.parse(raw):null}catch(e){return null}}
+const aliases={
+ 'klimmzüge':'pullup','pullups':'pullup','pull-up':'pullup','liegestütze':'pushup','pushups':'pushup','push-ups':'pushup',
+ 'seitheben':'lateral_raise','trizeps über kopf':'triceps','trizepsdrücken':'triceps','bizepscurls':'biceps','bizepscurl':'biceps',
+ 'face pulls':'face_pull','face pull':'face_pull','beinpresse':'leg_press','kniebeugen':'squat','squat':'squat','crunches (maschine)':'crunch','crunchmaschine':'crunch','bankdrücken':'bench'};
+function legacyMuscle(name,old){
+ const n=String(name||'').toLowerCase();const meta=old.exerciseMeta?.[name];
+ let mapped=meta?.muscle||old.customExercises?.find(e=>e.name===name)?.muscle;
+ if(mapped){if(mapped==='shoulders')return 'shoulders';if(mapped==='arms')return 'arms';if(mapped==='quads')return 'quads';if(muscleLabels[mapped])return mapped;}
+ if(/face.?pull|reverse fly|hintere schul/.test(n))return 'rear_shoulder';
+ if(/hamstring|beinbeuger|nordic|kreuzheben|deadlift|rdl/.test(n))return 'hamstrings';
+ if(/waden/.test(n))return 'calves';
+ if(/addukt|copenhagen/.test(n))return 'adductors';
+ if(/glute|hip thrust|gesäß/.test(n))return 'glutes';
+ if(/squat|kniebeug|ausfall|beinpress|bulgar|sprüng|sprung/.test(n))return 'quads';
+ if(/bizeps|curl/.test(n))return 'biceps';
+ if(/trizeps|über kopf/.test(n))return 'triceps';
+ if(/schulter|seitheben/.test(n))return 'shoulders';
+ if(/klimm|pull|rudern|latzug|rücken/.test(n))return 'back';
+ if(/brust|liegest|push|butterfly|dips|bankdrück/.test(n))return 'chest';
+ if(/plank|crunch|core|pallof|dead bug|cable chop|hollow|sit.up|bauch/.test(n))return 'core';
+ return 'core'===mapped?'core':'other';
+}
+function convertOldEntry(e,old){
+ const date=validDate(e.date)?e.date:today();const rawName=String(e.exercise||e.title||'').trim();
+ let kind=e.kind||(/fußball/i.test(rawName)?'football':/laufen/i.test(rawName)?'run':'strength');
+ const base={id:String(e.id||uid()),date,note:String(e.title||''),created:Number(e.created||Date.now()),legacyName:rawName,legacyRaw:clone(e)};
+ const count=Math.max(1,Math.round(Number(e.sets)||1));const seconds=num(e.seconds);
+ if(kind==='football'||kind==='run')return {...base,type:'sport',sport:kind==='football'?'football':'run',distance:Number(e.distance)||0,duration:Number(e.duration)||0,hr:e.hr??null,elevation:e.elevation??null,pace:e.pace||'',position:'',goals:null,assists:null};
+ if(kind==='stairs')return {...base,type:'session',session:'functional',minutes:Number(e.duration||e.trainingMinutes)||null,note:[base.note,'Alte Aktivität: Treppen'].filter(Boolean).join(' · ')};
+ if(kind==='rest')return {...base,type:'rest',note:base.note||'Ruhetag'};
+ const n=rawName.toLowerCase();
+ if(/handstand/.test(n)&&seconds>0)return {...base,type:'test',test:'handstand',value:seconds,attempts:1};
+ if(/^(?:side |reverse )?plank|unterarmstütz/.test(n)&&seconds>0)return {...base,type:'test',test:'plank',value:seconds,attempts:1};
+ if(/muscle.?up/.test(n)&&Number(e.reps)>0)return {...base,type:'test',test:'muscleup',value:Number(e.reps)||0,attempts:count};
+ if(/standweit|standsprung/.test(n)&&Number(e.distance)>0)return {...base,type:'test',test:'jump',value:Number(e.distance),attempts:count};
+ if(kind==='functional'){
+  if(/mobil|spagat|dehn|beweglich|stretch|90.90/.test(n))return {...base,type:'session',session:'mobility',minutes:e.trainingMinutes??null,note:[base.note,'Früher: '+rawName].filter(Boolean).join(' · ')};
+  if(/plyo|jump|sprung|skater|sprint/.test(n))return {...base,type:'session',session:'plyo',minutes:e.trainingMinutes??null,note:[base.note,'Früher: '+rawName].filter(Boolean).join(' · ')};
+  const muscle=legacyMuscle(rawName,old);
+  if(muscle==='other')return {...base,type:'session',session:'functional',minutes:e.trainingMinutes??null,note:[base.note,'Früher: '+rawName].filter(Boolean).join(' · ')};
+  return {...base,type:'group',muscle,count,note:base.note};
+ }
+ const alias=aliases[n];
+ if(alias){const reps=Number(e.reps);const weight=e.weight===''||e.weight==null?null:Number(e.weight);return {...base,type:'strength',exercise:alias,sets:Array.from({length:count},()=>({reps:Number.isFinite(reps)&&reps>0?reps:null,weight:Number.isFinite(weight)?weight:null}))};}
+ return {...base,type:'group',muscle:legacyMuscle(rawName,old),count,note:base.note};
+}
+function convertOldPlan(p){
+ const kind=p.kind||p.type||'strength';let type={football:'football',run:'zone2',functional:'functional',strength:'strength',stairs:'functional',rest:'rest'}[kind]||'strength';
+ return {id:String(p.id||uid()),date:validDate(p.date)?p.date:today(),type,title:String(p.title||p.note||p.exercise||'').slice(0,100),legacyRaw:clone(p)};
+}
+function migrateOld(value){
+ const db=defaults(),old=value&&typeof value==='object'?value:{};
+ db.entries=(Array.isArray(old.entries)?old.entries:[]).filter(e=>e&&typeof e==='object').map(e=>convertOldEntry(e,old));
+ db.plans=(Array.isArray(old.plans)?old.plans:[]).filter(p=>p&&validDate(p.date)).map(convertOldPlan);
+ const tests=Array.isArray(old.testResults)?old.testResults:[],milestones=Array.isArray(old.milestones)?old.milestones:[];
+ for(const t of tests){if(!t||!validDate(t.date)||!sensible(t.value)||t.value==null)continue;
+  const milestone=milestones.find(m=>m.id===t.milestone),key=String(t.milestone||'');
+  if(key==='handstand'||key==='muscleup'){if(!db.entries.some(e=>e.type==='test'&&e.test===key&&e.date===t.date&&Number(e.value)===Number(t.value)))db.entries.push({id:'old-test-'+uid(),date:t.date,type:'test',test:key,value:Number(t.value),attempts:1,note:'V8-Leistungstest',legacyRaw:clone(t),created:Date.now()});}
+  else db.entries.push({id:'old-test-'+uid(),date:t.date,type:'benchmark',benchmark:key,benchmarkName:String(milestone?.name||'Alter Leistungstest'),unit:String(milestone?.unit||''),value:Number(t.value),note:'V8-Leistungstest',legacyRaw:clone(t),created:Date.now()});
+ }
+ db.migration={source:'V2–V8',converted:db.entries.length,at:new Date().toISOString(),oldGoals:clone(old.goals||{})};
+ db.legacyExtras={testResults:clone(old.testResults||[]),milestones:clone(old.milestones||[]),customExercises:clone(old.customExercises||[]),exerciseMeta:clone(old.exerciseMeta||{}),renamedExercises:clone(old.renamedExercises||{})};
+ return db;
+}
+function normalizeV9(value){
+ if(!value||!Array.isArray(value.entries))throw new Error('Ungültiges Backup: Einträge fehlen');
+ let db=defaults();db.entries=value.entries.filter(e=>e&&typeof e==='object'&&validDate(e.date)).map(e=>clone(e));
+ db.plans=Array.isArray(value.plans)?value.plans.filter(p=>p&&validDate(p.date)).map(clone):[];
+ db.goals={...db.goals,...(value.goals||{})};
+ db.exercises=Array.isArray(value.exercises)?value.exercises.filter(e=>e&&e.id&&e.name&&e.muscle).map(clone):db.exercises;
+ db.migration=value.migration||{source:'V9-Import',converted:db.entries.length};db.legacyExtras=value.legacyExtras||{};return db;
+}
+function loadStore(){
+ try{const saved=localStorage.getItem(KEY);if(saved){store=normalizeV9(JSON.parse(saved));return;}
+ const old=getOld();store=old&&Array.isArray(old.entries)?migrateOld(old):defaults();save();}
+ catch(err){console.warn('Daten konnten nicht geladen werden',err);store=defaults();storageOK=false;}
+}
+loadStore();
+function ensureNoIdCollision(arr){const set=new Set();for(let x of arr){if(!x.id||set.has(x.id))x.id=uid();set.add(x.id)}}
+ensureNoIdCollision(store.entries);ensureNoIdCollision(store.plans);
+function exercise(id){return store.exercises.find(x=>x.id===id)}
+function eachSet(e){return Array.isArray(e.sets)?e.sets:[]}
+function entrySetsCount(e){if(e.type==='strength')return eachSet(e).length;if(e.type==='group')return Number(e.count)||0;if(e.type==='test'&&e.test==='plank')return Math.max(1,Number(e.attempts)||1);return 0}
+function mainMuscle(e){if(e.type==='strength')return exercise(e.exercise)?.muscle||legacyMuscle(e.legacyName||e.exercise,{});if(e.type==='group')return e.muscle;return e.type==='test'&&e.test==='plank'?'core':null}
+const weekEntries=week=>{const start=monday(week),end=shift(start,7);return store.entries.filter(e=>e.date>=start&&e.date<end)};
+const entryName=e=>e.type==='strength'?(exercise(e.exercise)?.active===false?(muscleLabels[exercise(e.exercise)?.muscle]||'Muskelgruppe'):(exercise(e.exercise)?.name||e.legacyName||'Kraftübung')):e.type==='group'?(muscleLabels[e.muscle]||'Sonstige Muskelgruppe'):e.type==='sport'?({football:'Fußball',zone2:'Zone-2-Lauf',interval:'Intervalllauf',run:'Laufen'})[e.sport]||'Laufen':e.type==='session'?({mobility:'Mobilität',functional:'Funktionalität',plyo:'Plyometrics'})[e.session]||'Session':e.type==='test'?(testDefs[e.test]?.name||'Test'):e.type==='benchmark'?(e.benchmarkName||'Leistungstest'):'Ruhetag';
+function summary(week){
+ const sums=Object.fromEntries(Object.keys(muscleLabels).map(k=>[k,0]));let football=0,endurance=0,runKm=0,footballKm=0,mobility=0,plyo=0,functional=0,face_pull=0,allSets=0;
+ for(const e of weekEntries(week)){
+  const n=entrySetsCount(e),mus=mainMuscle(e);if(mus&&mus in sums){sums[mus]+=n;allSets+=n;}
+  if(e.type==='strength'&&e.exercise==='face_pull')face_pull+=n;
+  if(e.type==='sport'){endurance++;if(e.sport==='football'){football++;footballKm+=Number(e.distance)||0}else runKm+=Number(e.distance)||0;}
+  if(e.type==='session'){if(e.session==='mobility')mobility++;if(e.session==='plyo')plyo++;if(e.session==='functional')functional++;}
+ }
+ const legs=[...lowerMuscles].reduce((a,k)=>a+(sums[k]||0),0);
+ const vals={...sums,chest:sums.chest||0,back:sums.back||0,lateral_shoulder:sums.lateral_shoulder||0,triceps:sums.triceps||0,biceps:sums.biceps||0,core:sums.core||0,legs,face_pull,football,endurance,mobility,plyo};
+ return {values:vals,runKm,footballKm,allKm:runKm+footballKm,allSets,functional,entries:weekEntries(week).length};
+}
+function valueOfGoal(key,s){return Number(s.values[key]||0)}
+function exerciseScore(e){if(e.type!=='strength')return null;const cfg=exercise(e.exercise);if(!cfg)return null;
+ const vals=eachSet(e).map(x=>{const reps=Number(x.reps)||0,w=Number(x.weight);return cfg.metric==='reps'?reps:((Number.isFinite(w)&&w>=0&&reps>0)?(reps===1?w:w*(1+Math.min(reps,15)/30)):0)}).filter(v=>v>0);return vals.length?Math.max(...vals):null;
+}
+function timeStr(min){if(min==null||!Number.isFinite(Number(min)))return '';const seconds=Math.round(Number(min)*60),h=Math.floor(seconds/3600),m=Math.floor(seconds%3600/60),s=seconds%60;return h?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${m}:${String(s).padStart(2,'0')}`;}
+function durationParse(str){let s=String(str||'').trim();if(!s)return null;let v=s.split(':');if(v.length===1)return num(s);if(v.length===2&&v.every(x=>/^\d+$/.test(x))&&+v[1]<60)return +v[0]+(+v[1]/60);if(v.length===3&&v.every(x=>/^\d+$/.test(x))&&+v[1]<60&&+v[2]<60)return +v[0]*60+(+v[1])+(+v[2]/60);return NaN;}
+function showToast(message){const n=$('toast');n.textContent=message;n.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.remove('visible'),3100)}
+function weekText(w){const end=shift(w,6);return `${w.slice(8)}.${w.slice(5,7)}. – ${end.slice(8)}.${end.slice(5,7)}.`}
+function labelIcon(e){if(e.type==='benchmark')return '✦';if(e.type==='strength'){if(e.exercise==='pullup')return '⤴';if(e.exercise==='pushup')return '↕';return '🏋';}if(e.type==='group')return '💪';if(e.type==='sport')return e.sport==='football'?'⚽':'🏃';if(e.type==='test')return '✦';if(e.type==='session')return e.session==='plyo'?'⚡':'◈';return '☾'}
+function entryDesc(e){if(e.type==='strength')return `${entrySetsCount(e)} Sätze · ${eachSet(e).map(s=>`${s.weight==null?'':fmt(s.weight)+' kg × '}${s.reps??'–'}`).join(' / ')}${e.legacyName&&e.legacyName!==entryName(e)?' · früher '+e.legacyName:exercise(e.exercise)?.active===false?' · früher '+(exercise(e.exercise)?.name||''):''}`;
+ if(e.type==='group')return `${e.count||1} Sätze${e.legacyName?' · früher: '+e.legacyName:''}`;
+ if(e.type==='sport'){let v=[];if(e.distance!=null&&Number(e.distance)>0)v.push(`${fmt(e.distance,2)} km`);if(e.duration!=null&&e.duration>0)v.push(timeStr(e.duration));if(e.hr)v.push(`Ø ${e.hr} bpm`);if(e.pace)v.push(`${e.pace}/km`);if(e.elevation)v.push(`${e.elevation} hm`);if(e.sport==='football'){if(e.position)v.push(e.position);if(e.goals!=null)v.push(`${e.goals} Tore`);if(e.assists!=null)v.push(`${e.assists} Assists`);}return v.join(' · ')||'Ohne Zahlen';}
+ if(e.type==='session')return e.minutes?`${fmt(e.minutes,0)} Minuten`:'1 Session';if(e.type==='benchmark')return `${fmt(e.value,2)} ${esc(e.unit||'')}`;if(e.type==='test')return `${fmt(e.value,2)} ${testDefs[e.test]?.unit||''}${e.test==='plank'&&e.attempts>1?` · ${e.attempts} Versuche`:''}`;return 'Erholung';}
+function entryRow(e,allowEdit=true){return `<div class="rowentry"><div class="eicon">${labelIcon(e)}</div><div class="ebody"><b>${esc(entryName(e))}</b><small>${esc(entryDesc(e))}${e.note?' · '+esc(e.note):''}</small></div>${allowEdit?`<div class="eactions"><button class="iconbutton" data-edit="${esc(e.id)}" aria-label="Bearbeiten">✎</button><button class="iconbutton" data-delete="${esc(e.id)}" aria-label="Löschen">×</button></div>`:''}</div>`;}
+function bindEntryButtons(root){$$('[data-edit]',root).forEach(b=>b.onclick=()=>editEntry(b.dataset.edit));$$('[data-delete]',root).forEach(b=>b.onclick=()=>deleteEntry(b.dataset.delete));}
+function goto(next){page=next;$$('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+next));$$('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===next));const titles={dashboard:'Übersicht',add:'Eintragen',calendar:'Kalender',history:'Verlauf',progress:'Fortschritt',settings:'Ziele & Plan',data:'Daten & Backup'};$('pageTitle').textContent=titles[next];renderPage(next);window.scrollTo({top:0,behavior:'instant'});}
+$$('[data-page]').forEach(b=>b.addEventListener('click',()=>goto(b.dataset.page)));$$('[data-jump]').forEach(b=>b.addEventListener('click',()=>goto(b.dataset.jump)));
+$('topAdd').onclick=()=>{resetEntry();goto('add')};
+$('topDate').textContent=dateObj(today()).toLocaleDateString('de-DE',{day:'2-digit',month:'short',year:'numeric'});
+function renderPage(next=page){if(next==='dashboard')renderDashboard();else if(next==='calendar')renderCalendar();else if(next==='history')renderHistory();else if(next==='progress')renderProgress();else if(next==='settings')renderSettings();else if(next==='data')renderData();}
+function renderDashboard(){
+ const s=summary(dashWeek);$('dashWeekLabel').textContent=weekText(dashWeek);
+ const scored=goalMeta.filter(g=>Number(store.goals[g.key])>0&&!g.sub),done=scored.filter(g=>valueOfGoal(g.key,s)>=store.goals[g.key]).length;
+ $('heroStats').innerHTML=[
+  ['💪','Kraftsätze',s.allSets,'direkte Sätze, auch zwischendurch'],
+  ['⚽','Fußball',s.values.football,`von ${store.goals.football??1} geplanten Einheiten`],
+  ['🏃','Kilometer',fmt(s.allKm,2),`${fmt(s.runKm,2)} Lauf + ${fmt(s.footballKm,2)} Fußball`],
+  ['◎','Ziele',`${done}/${scored.length}`,'Wochenziele erreicht']
+ ].map(v=>`<div class="stat"><div class="label">${v[0]} ${v[1]}</div><strong>${v[2]}</strong><div class="foot">${esc(v[3])}</div></div>`).join('');
+ $('goalBars').innerHTML=goalMeta.filter(g=>Number(store.goals[g.key])>0).map(g=>{
+  let v=valueOfGoal(g.key,s),target=Number(store.goals[g.key]),pct=Math.min(100,Math.round(100*v/target));
+  let color=g.type==='sport'?(g.key==='football'?'blue':'green'):g.type==='session'?'yellow':'red';
+  return `<div class="goalitem"><div class="goalhead"><b>${g.sub?'↳ ':''}${g.name}</b><span>${fmt(v)}/${fmt(target)} ${g.unit}</span></div><div class="track"><i class="${color}" style="width:${pct}%"></i></div>${g.key==='endurance'?'<div class="goalfoot">Mind. 1× Fußball + insgesamt 2× Fußball/Laufen. Zwei Fußballtage ersetzen den zusätzlichen Lauf.</div>':g.key==='legs'?'<div class="goalfoot">Mindestens auch einen gezielten Hamstring-Satz anstreben.</div>':''}</div>`;
+ }).join('');
+ const recent=store.entries.slice().sort((a,b)=>b.date.localeCompare(a.date)||(b.created||0)-(a.created||0)).slice(0,4);
+ $('recentEntries').innerHTML=recent.length?recent.map(e=>entryRow(e,false)).join(''):'<div class="empty">Noch keine Einträge.</div>';
+ const plans=store.plans.filter(p=>p.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,4);
+ $('upcomingPlans').innerHTML=plans.length?plans.map(p=>`<div class="planrow"><div><b>${esc(p.title||planLabel(p.type))}</b><div class="sub">${esc(p.date)}</div></div><span class="pill">Geplant</span></div>`).join(''):'<div class="empty">Keine Trainingspläne angelegt – völlig okay.</div>';
+}
+$('dashPrev').onclick=()=>{dashWeek=shift(dashWeek,-7);renderDashboard()};$('dashNext').onclick=()=>{dashWeek=shift(dashWeek,7);renderDashboard()};$('dashToday').onclick=()=>{dashWeek=monday(today());renderDashboard()};
+function calendarTags(entries,plans){
+ const groups=new Map();for(const e of entries){const symbol=labelIcon(e);let key=e.type==='strength'?(e.exercise==='pushup'?'pushup':e.exercise==='pullup'?'pullup':'strength'):e.type==='group'?'muscle:'+e.muscle:e.type==='sport'?'sport:'+e.sport:e.type==='session'?'session:'+e.session:'test:'+e.test;
+  const n=['strength','group'].includes(e.type)?entrySetsCount(e):1,cls=e.type==='strength'||e.type==='group'?'redtag':e.type==='sport'?(e.sport==='football'?'bluetag':'greentag'):e.type==='session'?'yellowtag':'purplet';
+  if(!groups.has(key))groups.set(key,{symbol,n:0,cls,title:new Set()});const v=groups.get(key);v.n+=n;v.title.add(entryName(e));
+ }
+ let rows=[...groups.values()].slice(0,4).map(t=>`<span class="daytag ${t.cls}" title="${esc([...t.title].join(', '))}">${t.symbol}<b>${t.n}</b></span>`).join('');
+ if(plans.length)rows+=`<span class="daytag yellowtag" title="${plans.length} geplant">◌${plans.length}</span>`;
+ return rows;
+}
+function renderCalendar(){
+ const month=calendarMonth,first=month+'-01',firstOffset=(dateObj(first).getDay()+6)%7,days=new Date(+month.slice(0,4),+month.slice(5,7),0).getDate();
+ const cells=Math.ceil((firstOffset+days)/7)*7,start=shift(first,-firstOffset);
+ $('monthLabel').textContent=monthDate(month);
+ let html=['Mo','Di','Mi','Do','Fr','Sa','So'].map(w=>`<div class="weekday">${w}</div>`).join('');
+ const byDate={};store.entries.forEach(e=>{(byDate[e.date]??=[]).push(e)});const planByDate={};store.plans.forEach(p=>{(planByDate[p.date]??=[]).push(p)});
+ for(let i=0;i<cells;i++){
+  const date=shift(start,i),outside=date.slice(0,7)!==month;
+  html+=`<button type="button" data-date="${date}" class="day ${outside?'other':''} ${date===today()?'today':''} ${date===selected?'active':''}" aria-label="${date}"><span class="daynumber">${dateObj(date).getDate()}</span><span class="daytags">${calendarTags(byDate[date]||[],planByDate[date]||[])}</span></button>`;
+ }
+ $('calendarGrid').innerHTML=html;
+ $$('[data-date]',$('calendarGrid')).forEach(b=>b.onclick=()=>{selected=b.dataset.date;calendarMonth=selected.slice(0,7);renderCalendar()});
+ $('selectedDateLabel').textContent=humanDate(selected);
+ const es=(byDate[selected]||[]).slice().sort((a,b)=>(a.created||0)-(b.created||0));$('calendarDayEntries').innerHTML=es.length?es.map(e=>entryRow(e)).join(''):'<div class="empty">Noch kein Training eingetragen.</div>';bindEntryButtons($('calendarDayEntries'));
+ const ps=(planByDate[selected]||[]);$('calendarDayPlans').innerHTML=ps.map(p=>`<div class="planrow"><span>◌ ${esc(p.title||planLabel(p.type))}</span><div class="actions"><button class="btn small" data-plan-done="${esc(p.id)}">✓ Erfassen</button><button class="iconbutton" data-plan-delete="${esc(p.id)}" aria-label="Plan löschen">×</button></div></div>`).join('');
+ $$('[data-plan-delete]',$('calendarDayPlans')).forEach(b=>b.onclick=()=>{store.plans=store.plans.filter(p=>p.id!==b.dataset.planDelete);save();renderAll();});
+ $$('[data-plan-done]',$('calendarDayPlans')).forEach(b=>b.onclick=()=>{const p=store.plans.find(p=>p.id===b.dataset.planDone);if(!p)return;resetEntry();selected=p.date; if(['football','zone2','interval'].includes(p.type)){setEntryType('sport');$('sportKind').value=p.type;}else if(['mobility','plyo','functional'].includes(p.type)){setEntryType('session');$('sessionKind').value=p.type}else setEntryType('strength');$('entryNote').value=p.title;goto('add');showToast('Jetzt die tatsächlichen Werte eintragen – Plan bleibt bis zur Löschung bestehen.');});
+}
+$('monthPrev').onclick=()=>{let d=dateObj(calendarMonth+'-01');d.setMonth(d.getMonth()-1);calendarMonth=iso(d).slice(0,7);renderCalendar()};
+$('monthNext').onclick=()=>{let d=dateObj(calendarMonth+'-01');d.setMonth(d.getMonth()+1);calendarMonth=iso(d).slice(0,7);renderCalendar()};
+$('monthToday').onclick=()=>{selected=today();calendarMonth=today().slice(0,7);renderCalendar()};
+$('addForDate').onclick=()=>{const date=selected;resetEntry();$('entryDate').value=date;goto('add')};
+function planLabel(type){return {strength:'Krafttraining',football:'Fußball',zone2:'Zone 2',interval:'Intervalltraining',mobility:'Mobilität',plyo:'Plyometrics',functional:'Funktionelles Training',rest:'Ruhetag'}[type]||'Training'}
+$('newPlan').onclick=()=>{$('planForm').reset();$('planDate').value=selected;$('planDialog').showModal()};
+$('closePlan').onclick=$('cancelPlan').onclick=()=>$('planDialog').close();
+$('planForm').onsubmit=e=>{e.preventDefault();store.plans.push({id:uid(),date:$('planDate').value,type:$('planType').value,title:$('planTitle').value.trim()});save();$('planDialog').close();renderAll();showToast('Plan gespeichert – zählt noch nicht als Training.')};
+function renderHistory(){
+ const s=summary(historyWeek);$('historyLabel').textContent=weekText(historyWeek);
+ $('historyTotals').innerHTML=`<span><b>${s.allSets}</b> Kraftsätze</span><span><b>${fmt(s.allKm,2)}</b> km gesamt</span><span><b>${s.values.football}</b> Fußball</span><span><b>${s.values.mobility}</b> Mobilität</span>`;
+ const byDate={};weekEntries(historyWeek).forEach(e=>{(byDate[e.date]??=[]).push(e)});
+ $('historyEntries').innerHTML=Object.keys(byDate).sort().reverse().map(d=>`<div class="histday"><h4>${esc(humanDate(d))}</h4>${byDate[d].sort((a,b)=>(a.created||0)-(b.created||0)).map(e=>entryRow(e)).join('')}</div>`).join('')||'<div class="empty">In dieser Woche gibt es noch keine Einträge.</div>';
+ bindEntryButtons($('historyEntries'));
+}
+$('historyPrev').onclick=()=>{historyWeek=shift(historyWeek,-7);renderHistory()};$('historyNext').onclick=()=>{historyWeek=shift(historyWeek,7);renderHistory()};
+function lineSvg(points,{valueLabel='Wert',color='#73e8b6',height=230,zero=false,suffix='' }={}){
+ if(!points.length)return '<div class="empty">Noch keine vergleichbaren Daten. Sobald du Einheiten einträgst, erscheint hier die Entwicklung.</div>';
+ let w=720,h=height,left=44,right=20,top=22,bottom=43,plotW=w-left-right,plotH=h-top-bottom;
+ let values=points.map(x=>x.value),low=zero?0:Math.min(...values),high=Math.max(...values);
+ if(high===low){low=Math.max(0,low-2);high+=2;}else{let pad=(high-low)*.12;if(!zero)low=Math.max(0,low-pad);high+=pad;}
+ const y=v=>top+plotH-(v-low)/(high-low)*plotH;
+ const x=i=>left+(points.length===1?plotW/2:i*plotW/(points.length-1));
+ let marks=Array.from({length:4},(_,i)=>{let v=low+(high-low)*i;return `<line x1="${left}" y1="${y(v)}" x2="${w-right}" y2="${y(v)}" stroke="#354e5b" stroke-width="1"/><text x="${left-9}" y="${y(v)+4}" fill="#93aebb" font-size="11" text-anchor="end">${fmt(v,0)}</text>`}).join('');
+ const path=points.map((p,i)=>`${i?'L':'M'}${x(i).toFixed(2)},${y(p.value).toFixed(2)}`).join(' ');
+ const labels=points.filter((p,i)=>i===0||i===points.length-1||i%Math.max(1,Math.ceil(points.length/5))===0).map(p=>{let i=points.indexOf(p);return `<text x="${x(i)}" y="${h-13}" font-size="10" fill="#95adbb" text-anchor="middle">${esc(p.label.slice(5).replace('-','.'))}</text>`}).join('');
+ return `<div class="chartbox"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Liniendiagramm ${esc(valueLabel)}"><defs><linearGradient id="linefill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".24"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>${marks}<path d="${path} L${x(points.length-1)},${top+plotH} L${x(0)},${top+plotH}Z" fill="url(#linefill)"/><path d="${path}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${points.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.value)}" r="4" fill="${color}"><title>${p.label}: ${fmt(p.value,2)}${suffix}</title></circle>`).join('')}${labels}</svg></div>`;
+}
+function combinedChart(){const start=shift(monday(today()),-7*15),weeks=Array.from({length:16},(_,i)=>shift(start,i*7)),data=weeks.map(w=>({label:w,...summary(w)}));
+ let w=720,h=244,left=45,right=16,top=20,bottom=45,plotW=w-left-right,plotH=h-top-bottom,max=Math.max(5,...data.map(s=>s.allKm))*1.14,step=plotW/data.length,barWidth=Math.min(28,step*.58),y=v=>top+plotH-v/max*plotH;
+ let grid=[0,1,2,3,4].map(i=>{let val=max*i/4;return `<line x1="${left}" x2="${w-right}" y1="${y(val)}" y2="${y(val)}" stroke="#344b5b"/><text x="${left-9}" y="${y(val)+4}" font-size="11" fill="#94a9b5" text-anchor="end">${fmt(val,0)}</text>`}).join('');
+ let bars=data.map((d,i)=>{let x=left+i*step+(step-barWidth)/2,a=d.footballKm,b=d.runKm;return `<rect x="${x}" y="${y(a)}" width="${barWidth}" height="${Math.max(0,a/max*plotH)}" fill="#5eaee4" rx="2"><title>Fußball ${fmt(a,2)} km</title></rect><rect x="${x}" y="${y(a+b)}" width="${barWidth}" height="${Math.max(0,b/max*plotH)}" fill="#5edaa0" rx="2"><title>Laufen ${fmt(b,2)} km</title></rect>`}).join('');
+ let line=data.map((d,i)=>`${i?'L':'M'}${left+(i+.5)*step},${y(d.allKm)}`).join(' '),labels=data.map((d,i)=>i%3===0||i===data.length-1?`<text x="${left+(i+.5)*step}" y="${h-13}" font-size="10" text-anchor="middle" fill="#94a9b5">${d.label.slice(5).replace('-','.')}</text>`:'').join('');
+ return `<div class="chartbox"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Wöchentlich kombinierte Laufkilometer">${grid}${bars}<path d="${line}" fill="none" stroke="#e7eff4" stroke-width="1.8" opacity=".7"/>${labels}</svg></div><div class="chartcaption">🟦 Fußball · 🟩 Laufen · helle Linie: Gesamt-km. Jede Woche ist ein Montag–Sonntag-Zeitraum.</div>`;
+}
+function availableCharts(){let list=store.exercises.filter(e=>e.active&&e.chart).map(e=>({id:'ex:'+e.id,name:e.name}));return [{id:'test:handstand',name:'Handstand'},{id:'test:plank',name:'Plank'},{id:'test:muscleup',name:'Muscle-up'},{id:'test:jump',name:'Standweitsprung'},...list].sort((a,b)=>a.name.localeCompare(b.name,'de'))}
+function renderProgress(){
+ $('kmChart').innerHTML=combinedChart();const opts=availableCharts(),current=$('progressExercise').value;
+ $('progressExercise').innerHTML=opts.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');if(opts.some(o=>o.id===current))$('progressExercise').value=current;else $('progressExercise').value=opts.find(o=>o.id==='ex:bench')?.id||opts[0]?.id;
+ renderExerciseChart();
+}
+function renderExerciseChart(){
+ let pick=$('progressExercise').value,windowWeeks=Number($('progressWindow').value)||16,cut=shift(today(),-windowWeeks*7),end=today(),data=[];
+ const isTest=pick.startsWith('test:'),id=pick.slice(pick.indexOf(':')+1),cfg=exercise(id);
+ for(const e of store.entries){if(e.date<cut||e.date>end)continue;
+  if(isTest){if(e.type!=='test'||e.test!==id)continue;data.push({label:e.date,value:Number(e.value)||0});}
+  else if(e.type==='strength'&&e.exercise===id){let v=exerciseScore(e);if(v!=null)data.push({label:e.date,value:v});}
+  else if(e.type==='benchmark'&&((id==='bench'&&e.benchmark==='bench')||(id==='pullup'&&e.benchmark==='pullups'))){data.push({label:e.date,value:Number(e.value)||0});}
+ }
+ const byDate=new Map();for(const d of data){byDate.set(d.label,Math.max(byDate.get(d.label)||0,d.value));}
+ const points=[...byDate].sort((a,b)=>a[0].localeCompare(b[0])).map(([label,value])=>({label,value}));
+ let unit=isTest?(testDefs[id]?.unit||''):cfg?.metric==='reps'?'Wdh.':'kg',title=isTest?'Beste Leistung je Trainingstag':cfg?.metric==='reps'?'Beste Wiederholungszahl je Tag':'Kraftindex (geschätzter 1RM) in kg';
+ $('exerciseChart').innerHTML=`<p class="hint">${esc(title)}. ${!isTest&&cfg?.metric==='weighted'?'Epley: Gewicht × (1 + min(Wdh., 15)/30). Ein Vergleichswert, kein gemessener Maximalversuch.':''}</p>`+lineSvg(points,{valueLabel:title,suffix:' '+unit,color:'#75dbba'});
+ let best=points.length?Math.max(...points.map(p=>p.value)):null,last=points.at(-1);
+ let extra='';if(id==='bench'&&!isTest){let actual=store.entries.filter(e=>e.type==='strength'&&e.exercise==='bench').flatMap(e=>eachSet(e).filter(s=>Number(s.reps)===1&&s.weight!=null).map(s=>({date:e.date,weight:Number(s.weight)}))).sort((a,b)=>b.weight-a.weight)[0];
+  const benchmark=store.entries.filter(e=>e.type==='benchmark'&&e.benchmark==='bench').map(e=>Number(e.value)||0);let real=Math.max(actual?.weight||0,...benchmark);extra=`<span><b>${real?fmt(real):'–'} kg</b> Tatsächlich gemeldetes 1RM (bester Einzelversuch/Test)</span>`;
+ }
+ $('progressDetail').innerHTML=`<div class="ministats"><span><b>${best==null?'–':fmt(best,2)}</b> ${unit} Bestwert</span><span><b>${last?fmt(last.value,2):'–'}</b> ${unit} letzte Messung</span><span><b>${points.length}</b> Messtage</span>${extra}</div>`;
+}
+$('progressExercise').onchange=renderExerciseChart;$('progressWindow').onchange=renderExerciseChart;
+function muscleOptions(selected=''){return Object.entries(muscleLabels).map(([v,name])=>`<option value="${esc(v)}" ${selected===v?'selected':''}>${esc(name)}</option>`).join('')+`<option value="other" ${selected==='other'?'selected':''}>Sonstige Muskelgruppe</option>`;}
+function refreshExerciseSelect(){const selected=$('exerciseSelect').value;$('exerciseSelect').innerHTML=store.exercises.filter(x=>x.active).map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join('');if([...$('exerciseSelect').options].some(o=>o.value===selected))$('exerciseSelect').value=selected;}
+function refreshTestSelect(){const selected=$('testSelect').value;$('testSelect').innerHTML=Object.entries(testDefs).map(([id,v])=>`<option value="${id}">${v.name}</option>`).join('');if(testDefs[selected])$('testSelect').value=selected;}
+function refreshMuscleSelects(){$('groupMuscle').innerHTML=muscleOptions('chest');$('newExMuscle').innerHTML=muscleOptions('chest');}
+function setEntryType(type){entryType=type;$$('[data-type]').forEach(b=>b.classList.toggle('selected',b.dataset.type===type));
+ for(const t of ['strength','group','sport','session','test'])$(t+'Fields').classList.toggle('hidden',t!==type);
+ if(type==='strength'){refreshExerciseSelect();if(!$$('.setrow',$('setRows')).length)addSetRow(null,null);}if(type==='test')refreshTestFields();}
+$$('[data-type]').forEach(b=>b.onclick=()=>setEntryType(b.dataset.type));
+function addSetRow(reps,weight){const count=$$('.setrow',$('setRows')).length+1,metric=exercise($('exerciseSelect').value)?.metric||'weighted';
+ const row=document.createElement('div');row.className='setrow';row.innerHTML=`<span>${count}</span><input class="repsinput" type="number" min="1" max="500" step="1" placeholder="Wdh." aria-label="Wiederholungen Satz ${count}" value="${reps??''}"><input class="weightinput" type="number" min="0" max="1000" step="0.25" placeholder="kg (optional)" aria-label="Gewicht Satz ${count}" value="${weight??''}"><button type="button" class="remove" aria-label="Satz entfernen">×</button>`;
+ row.querySelector('.weightinput').classList.toggle('hidden',metric==='reps');row.querySelector('.remove').onclick=()=>{if($$('.setrow',$('setRows')).length<=1){showToast('Mindestens einen Satz behalten');return}row.remove();renumberSets();};$('setRows').appendChild(row);
+}
+function renumberSets(){$$('.setrow',$('setRows')).forEach((n,i)=>n.firstElementChild.textContent=i+1)}
+$('addSet').onclick=()=>addSetRow(null,null);
+$('exerciseSelect').onchange=()=>{$$('.weightinput',$('setRows')).forEach(n=>n.classList.toggle('hidden',exercise($('exerciseSelect').value)?.metric==='reps'))};
+function refreshTestFields(){let key=$('testSelect').value,def=testDefs[key]||testDefs.plank;
+ $('testEditor').innerHTML=`<div class="formgrid"><label class="field"><span>${esc(def.label)}</span><input id="testValue" type="number" min="0" max="100000" step="0.01" required placeholder="${key==='jump'?'z. B. 210':key==='muscleup'?'z. B. 1':'z. B. 25'}"></label>${key==='plank'?'<label class="field"><span>Anzahl der Plank-Sätze</span><input id="testAttempts" type="number" min="1" max="100" value="1"></label>':''}</div><p class="hint">${key==='handstand'?'Nur die beste Haltezeit der Session, keine Wiederholungen.':key==='plank'?'Die beste Haltezeit wird im Diagramm gezeigt; die Anzahl der Versuche zählt zum Core-Wochenvolumen.':key==='jump'?'Notiere die beste gemessene Sprungweite.':'Notiere die beste saubere Wiederholungszahl.'}</p>`;
+}
+$('testSelect').onchange=refreshTestFields;
+$('sportKind').onchange=()=>{$('footballExtra').classList.toggle('hidden',$('sportKind').value!=='football')};
+function resetEntry(){entryType='strength';$('entryForm').reset();$('editId').value='';$('entryDate').value=today();$('groupCount').value=1;$('setRows').innerHTML='';refreshExerciseSelect();setEntryType('strength');addSetRow(null,null);while($$('.setrow',$('setRows')).length>1)$('setRows').lastElementChild.remove();$('saveEntry').textContent='✓ Training speichern';$('footballExtra').classList.remove('hidden');}
+function formToEntry(){
+ const date=$('entryDate').value;if(!validDate(date))throw new Error('Bitte gültiges Datum wählen');
+ const old=store.entries.find(e=>e.id===$('editId').value);
+ const base={id:old?.id||uid(),date,type:entryType,note:$('entryNote').value.trim(),created:old?.created||Date.now()};
+ if(old?.legacyRaw){base.legacyRaw=old.legacyRaw;base.legacyName=old.legacyName;}
+ if(entryType==='strength'){
+  const ex=$('exerciseSelect').value;if(!exercise(ex)||!exercise(ex).active)throw new Error('Bitte eine aktive Übung auswählen');
+  const sets=$$('.setrow',$('setRows')).map(n=>{let reps=n.querySelector('.repsinput').value,kg=n.querySelector('.weightinput').value;
+   if(reps===''||!Number.isInteger(+reps)||+reps<1||+reps>500)throw new Error('Wiederholungen pro Satz prüfen');
+   if(kg!==''&&(!sensible(num(kg))||num(kg)>1000))throw new Error('Gewicht prüfen');
+   return {reps:+reps,weight:exercise(ex).metric==='reps'||kg===''?null:num(kg)};
+  });
+  if(sets.length<1)throw new Error('Mindestens einen Satz hinzufügen');return {...base,exercise:ex,sets};
+ }
+ if(entryType==='group'){let count=+$('groupCount').value;if(!Number.isInteger(count)||count<1||count>100)throw new Error('Satzanzahl prüfen');return {...base,muscle:$('groupMuscle').value,count};}
+ if(entryType==='sport'){
+  const distance=$('sportKm').value===''?null:num($('sportKm').value),duration=durationParse($('sportDuration').value),hr=$('sportHr').value===''?null:+$('sportHr').value,elevation=$('sportElev').value===''?null:+$('sportElev').value;
+  if(distance!==null&&(!sensible(distance)||distance>500)||duration!==null&&(!sensible(duration)||duration>5000)||hr!==null&&(hr<30||hr>240)||elevation!==null&&(!sensible(elevation)||elevation>20000))throw new Error('Sportwerte prüfen');
+  const football=$('sportKind').value==='football';let goals=$('footballGoals').value===''?null:+$('footballGoals').value,assists=$('footballAssists').value===''?null:+$('footballAssists').value;
+  if(football&&[goals,assists].some(x=>x!==null&&(!Number.isInteger(x)||x<0||x>100)))throw new Error('Tore oder Assists prüfen');
+  return {...base,sport:$('sportKind').value,distance,duration,hr,elevation,pace:$('sportPace').value.trim(),position:football?$('footballPosition').value.trim():'',goals:football?goals:null,assists:football?assists:null};
+ }
+ if(entryType==='session'&&old?.type==='rest')return {...base,type:'rest'};
+ if(entryType==='session'){const minutes=$('sessionMinutes').value===''?null:+$('sessionMinutes').value;if(minutes!==null&&(!sensible(minutes)||minutes>1440))throw new Error('Minuten prüfen');return {...base,session:$('sessionKind').value,minutes};}
+ if(entryType==='test'){const value=+$('testValue').value,attempts=entryTestAttempts();if(!sensible(value)||value>100000)throw new Error('Testwert prüfen');if(!Number.isInteger(attempts)||attempts<1||attempts>100)throw new Error('Satzanzahl prüfen');return {...base,test:$('testSelect').value,value,attempts};}
+ throw new Error('Ungültiger Eintragstyp');
+}
+function entryTestAttempts(){return $('testSelect').value==='plank'?+($('testAttempts')?.value||1):1}
+function persistEntry(obj){let i=store.entries.findIndex(e=>e.id===obj.id);if(i>=0)store.entries.splice(i,1,obj);else store.entries.push(obj);save()}
+$('entryForm').onsubmit=evt=>{evt.preventDefault();try{let value=formToEntry();persistEntry(value);selected=value.date;dashWeek=monday(value.date);historyWeek=dashWeek;calendarMonth=value.date.slice(0,7);resetEntry();renderAll();showToast('✓ Training gespeichert');}catch(err){showToast(err.message||'Bitte Eingaben prüfen');}};
+$('cancelEdit').onclick=resetEntry;
+function editEntry(id){const e=store.entries.find(x=>x.id===id);if(!e)return;
+ if(e.type==='benchmark'){
+  const input=prompt(`${e.benchmarkName||'Leistungstest'} (${e.unit||''}) – Wert bearbeiten`,String(e.value));if(input===null)return;
+  const value=num(input);if(!sensible(value)){showToast('Ungültiger Testwert');return;}
+  const date=prompt('Datum (JJJJ-MM-TT)',e.date);if(date===null)return;if(!validDate(date)){showToast('Ungültiges Datum');return;}
+  e.value=value;e.date=date;save();renderAll();showToast('Alter Testwert aktualisiert');return;
+ }
+ resetEntry();setEntryType(e.type==='rest'?'session':e.type);$('editId').value=e.id;$('entryDate').value=e.date;$('entryNote').value=e.note||'';
+ if(e.type==='strength'){
+  if(!exercise(e.exercise)||!exercise(e.exercise).active){const muscle=mainMuscle(e);setEntryType('group');$('groupMuscle').value=muscle||'other';$('groupCount').value=entrySetsCount(e);}
+  else{$('exerciseSelect').value=e.exercise;$('setRows').innerHTML='';eachSet(e).forEach(x=>addSetRow(x.reps,x.weight));}
+ }
+ if(e.type==='group'){$('groupMuscle').value=e.muscle||'other';$('groupCount').value=e.count||1;}
+ if(e.type==='sport'){$('sportKind').value=e.sport;$('sportKm').value=e.distance??'';$('sportDuration').value=e.duration==null?'':timeStr(e.duration);$('sportHr').value=e.hr??'';$('sportElev').value=e.elevation??'';$('sportPace').value=e.pace||'';$('footballPosition').value=e.position||'';$('footballGoals').value=e.goals??'';$('footballAssists').value=e.assists??'';$('sportKind').onchange();}
+ if(e.type==='session'){$('sessionKind').value=e.session;$('sessionMinutes').value=e.minutes??'';}
+ if(e.type==='test'){$('testSelect').value=e.test;refreshTestFields();$('testValue').value=e.value??'';if(e.test==='plank')$('testAttempts').value=e.attempts||1;}
+ if(e.type==='rest'){$('entryNote').value=e.note||'Ruhetag';}
+ $('saveEntry').textContent='✓ Änderungen speichern';goto('add');
+}
+function deleteEntry(id){const e=store.entries.find(x=>x.id===id);if(!e)return;if(!confirm(`Eintrag „${entryName(e)}“ vom ${e.date} wirklich löschen?`))return;store.entries=store.entries.filter(e=>e.id!==id);save();renderAll();showToast('Eintrag gelöscht');}
+// Text-Erkennung: lokale, nachvollziehbare Regeln. Jede Zeile bleibt vor dem Speichern editierbar.
+function parseQuickLine(input){let text=String(input||'').trim();if(!text)return null;
+ const lc=text.toLowerCase();const base={id:uid(),date:$('entryDate').value||today(),note:'',created:Date.now()};
+ if(/^(fußball|fussball|football|soccer|zone.?2|joggen|lauf|laufen|interval)/i.test(text)){
+  const football=/fußball|fussball|football|soccer/.test(lc),interval=/interval/.test(lc),kind=football?'football':interval?'interval':/zone.?2/.test(lc)?'zone2':'run';
+  const km=text.match(/(\d+(?:[.,]\d+)?)\s*km/i),goals=text.match(/(\d+)\s*tore?/i),assists=text.match(/(\d+)\s*(?:assists?|vorlagen?)/i),hr=text.match(/(?:hf|puls|bpm)\s*[:=]?\s*(\d+)/i),min=text.match(/(\d+(?:[.,]\d+)?)\s*(?:min|minute)/i);
+  return {...base,type:'sport',sport:kind,distance:km?num(km[1]):null,duration:min?num(min[1]):null,hr:hr?Number(hr[1]):null,elevation:null,pace:'',position:'',goals:goals?+goals[1]:null,assists:assists?+assists[1]:null};
+ }
+ if(/^(mobilität|mobilitaet|mobility|plyo|plyometrics|funktionalität|funktionell)/i.test(text)){
+  let sub=/plyo/.test(lc)?'plyo':/mobil|mobility/.test(lc)?'mobility':'functional',mins=text.match(/(\d+)\s*(min|minute)/i);return {...base,type:'session',session:sub,minutes:mins?+mins[1]:null};
+ }
+ for(const [test,meta] of Object.entries(testDefs)){
+  const aliasesTest={handstand:['handstand'],muscleup:['muscle-up','muscle up','muscleup'],jump:['standweitsprung','standsprung'],plank:['plank']}[test];
+  if(aliasesTest.some(v=>lc.startsWith(v))){let v=text.match(/(\d+(?:[.,]\d+)?)/g)||[];return {...base,type:'test',test,value:v.length?num(v.at(-1)):null,attempts:1};}
+ }
+ let ex=store.exercises.filter(e=>e.active).sort((a,b)=>b.name.length-a.name.length).find(e=>lc.startsWith(e.name.toLowerCase()));
+ if(!ex){const a=Object.entries(aliases).find(([name,id])=>lc.startsWith(name)&&store.exercises.some(e=>e.active&&e.id===id));if(a)ex=exercise(a[1]);}
+ if(ex){const tail=text.slice(text.toLowerCase().indexOf(ex.name.toLowerCase())===0?ex.name.length:0).trim();const tokens=[];
+  const weighted=/(\d+(?:[.,]\d+)?)\s*kg\s*[x×]\s*(\d+)/ig;let m,ranges=[];while((m=weighted.exec(tail))){tokens.push({weight:num(m[1]),reps:+m[2]});ranges.push([m.index,m.index+m[0].length]);}
+  if(tokens.length){const next=/[x×]\s*(\d+)/ig;let match;while((match=next.exec(tail))){if(ranges.some(([a,b])=>match.index>=a&&match.index<b))continue;tokens.push({weight:tokens.at(-1)?.weight??null,reps:+match[1]})}}
+  if(!tokens.length){let times=tail.match(/(\d+)\s*[x×]\s*(\d+)/);if(times)for(let i=0;i<Math.min(30,+times[1]);i++)tokens.push({reps:+times[2],weight:null});
+   else{let numbers=(tail.match(/\d+/g)||[]).map(Number).filter(x=>x>0);if(numbers.length)tokens.push(...numbers.slice(0,30).map(reps=>({reps,weight:null})));}
+  }
+  if(!tokens.length)return null;return {...base,type:'strength',exercise:ex.id,sets:tokens.slice(0,30)};
+ }
+ const mus=Object.entries(muscleLabels).sort((a,b)=>b[1].length-a[1].length).find(([k,label])=>lc.startsWith(label.toLowerCase()))?.[0]||({brust:'chest',rücken:'back',beine:'legs',schulter:'shoulders',bauch:'core',core:'core',hamstrings:'hamstrings',trizeps:'triceps',bizeps:'biceps'})[lc.split(/\s+/)[0]];
+ if(mus){const n=text.match(/(\d+)\s*(?:sätze|satz|sets?)/i);return {...base,type:'group',muscle:mus,count:n?+n[1]:1};}
+ return null;
+}
+function renderQuick(){const el=$('quickPreview');el.innerHTML=quickDraft.map((x,i)=>`<div class="smart-row"><div><b>${esc(entryName(x))}</b><div class="sub">${esc(entryDesc(x))}</div></div><button class="iconbutton" data-quick-edit="${i}" aria-label="Bearbeiten">✎</button><button class="iconbutton" data-quick-del="${i}" aria-label="Entfernen">×</button></div>`).join('');$('saveQuick').classList.toggle('hidden',!quickDraft.length);
+ $$('[data-quick-del]',el).forEach(b=>b.onclick=()=>{quickDraft.splice(+b.dataset.quickDel,1);renderQuick()});
+ $$('[data-quick-edit]',el).forEach(b=>b.onclick=()=>{const draft=quickDraft[+b.dataset.quickEdit];let tmp={...draft,id:uid()};store.entries.push(tmp);editEntry(tmp.id);store.entries=store.entries.filter(e=>e.id!==tmp.id);quickDraft.splice(+b.dataset.quickEdit,1);renderQuick();showToast('Eintrag im Formular bearbeiten und speichern.');});
+}
+$('parseQuick').onclick=()=>{const lines=$('quickText').value.split(/\n|;/).filter(x=>x.trim());quickDraft=[];let misses=[];for(const ln of lines){const e=parseQuickLine(ln);if(e)quickDraft.push(e);else misses.push(ln);}renderQuick();if(misses.length)showToast(`${misses.length} Zeile(n) nicht erkannt – bitte manuell erfassen.`);else showToast(`${quickDraft.length} Eintrag/Einträge erkannt – Vorschau prüfen.`);};
+$('saveQuick').onclick=()=>{if(!quickDraft.length)return;for(const q of quickDraft){if(q.type==='test'&&(!sensible(q.value)||q.value==null)){showToast('Bei einem Test fehlt der Wert – bitte manuell eingeben.');return;}if(q.type==='strength'&&eachSet(q).some(s=>!s.reps||s.reps>500)){showToast('Wiederholungen prüfen');return;}}
+ store.entries.push(...quickDraft.map(q=>({...q,id:uid()})));quickDraft=[];$('quickText').value='';renderQuick();save();renderAll();showToast('✓ Texteingaben gespeichert');};
+function renderSettings(){
+ $('goalSettings').innerHTML=goalMeta.map(g=>`<label class="goaledit"><span><b>${esc(g.name)}</b><small>${esc(g.unit)} / Woche${g.sub?' · Teil der Bein-Sätze':''}</small></span><input type="number" min="0" max="500" step="1" data-goal="${g.key}" value="${Number(store.goals[g.key]??0)}" aria-label="Ziel ${esc(g.name)}"></label>`).join('');
+ $('exerciseSettings').innerHTML=`<p class="sub">Aktiv · Bezeichnung · Hauptmuskelgruppe · Diagramm</p>`+store.exercises.map(ex=>`<div class="exerciseedit" data-ex-row="${esc(ex.id)}"><input class="excheck" data-ex-active type="checkbox" title="Aktiv" ${ex.active?'checked':''} aria-label="${esc(ex.name)} aktiv"><input data-ex-name maxlength="60" value="${esc(ex.name)}" aria-label="Übungsname"><select data-ex-muscle aria-label="Muskelgruppe">${muscleOptions(ex.muscle)}</select><label class="tinycheck"><input data-ex-chart type="checkbox" ${ex.chart?'checked':''}>Chart</label></div>`).join('')+`<button id="saveExercises" class="btn primary" type="button" style="margin-top:11px">Übungen speichern</button>`;
+ $('saveExercises').onclick=saveExercises;
+}
+$('saveGoals').onclick=()=>{for(const field of $$('[data-goal]',$('goalSettings'))){let value=Number(field.value);if(!Number.isInteger(value)||value<0||value>500){showToast('Zielwerte müssen ganze Zahlen von 0 bis 500 sein');return;}}
+ for(const field of $$('[data-goal]',$('goalSettings')))store.goals[field.dataset.goal]=+field.value;
+ save();renderAll();showToast('Wochenziele aktualisiert');};
+function saveExercises(){
+ const draft=[];for(const r of $$('[data-ex-row]',$('exerciseSettings'))){const old=exercise(r.dataset.exRow),name=r.querySelector('[data-ex-name]').value.trim();if(!name){showToast('Bitte alle Übungen benennen');return;}
+  draft.push({...old,name,active:r.querySelector('[data-ex-active]').checked,muscle:r.querySelector('[data-ex-muscle]').value,chart:r.querySelector('[data-ex-chart]').checked});
+ }
+ if(new Set(draft.map(e=>e.name.toLowerCase())).size!==draft.length){showToast('Übungsnamen dürfen nicht doppelt vorkommen');return;}
+ store.exercises=draft;save();refreshExerciseSelect();renderAll();showToast('Übungsauswahl und Zuordnung gespeichert');
+}
+$('addNewExercise').onclick=()=>{const name=$('newExName').value.trim();if(!name){showToast('Übung benennen');return;}if(store.exercises.some(e=>e.name.toLowerCase()===name.toLowerCase())){showToast('Übung bereits vorhanden');return;}
+ store.exercises.push({id:'custom-'+uid(),name,muscle:$('newExMuscle').value,metric:$('newExMetric').value,chart:$('newExChart').value==='1',active:true});$('newExName').value='';save();refreshExerciseSelect();renderAll();showToast('Übung hinzugefügt');};
+function renderData(){
+ const mig=store.migration||{},legacyCount=store.entries.filter(e=>e.legacyRaw).length;
+ $('dataSummary').textContent=`${store.entries.length} Trainingseinträge, ${store.plans.length} Planungen, ${store.exercises.filter(e=>e.active).length} aktive Übungen. V9 speichert automatisch im Browser.`;
+ $('migrationDetails').innerHTML=mig.source==='V2–V8'?`Beim ersten Start wurden ${mig.converted||0} Einträge aus dem alten Format übernommen. Nicht mehr ausgewählte Übungen wurden nach Hauptmuskelgruppe eingeordnet. ${legacyCount} Einträge enthalten weiterhin ihre ursprünglichen Werte und Bezeichnungen als Archivdaten. V8 wurde nicht verändert.`:mig.source==='new'?'Keine früheren Trainingsdaten gefunden. Du kannst eine alte JSON-Sicherung importieren.':`Aktuelle Datenquelle: ${esc(mig.source||'Import')}. Alte Originalinformationen bleiben im JSON-Backup enthalten.`;
+}
+function downloadFile(name,content,mime='application/json'){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+$('exportBackup').onclick=()=>{downloadFile('training-hq-v9-backup-'+today()+'.json',JSON.stringify(store,null,2));showToast('Backup erstellt. Bitte sicher aufbewahren.');};
+$('importBackup').onclick=()=>$('backupFile').click();
+$('backupFile').onchange=async evt=>{const file=evt.target.files?.[0];if(!file)return;
+ try{const value=JSON.parse(await file.text());let imported=value.schema===9?normalizeV9(value):migrateOld(value);
+  if(!Array.isArray(value.entries))throw new Error('Dieses JSON enthält keine Trainingsliste');
+  if(!confirm(`Backup mit ${imported.entries.length} Einträgen importieren? Die aktuellen V9-Daten werden ersetzt. Bitte vorher ein V9-Backup sichern.`))return;
+  store=imported;save();refreshExerciseSelect();renderAll();showToast('✓ Backup importiert');
+ }catch(err){alert('Import fehlgeschlagen: '+(err.message||err));}finally{evt.target.value=''}
+};
+$('inspectLegacy').onclick=()=>{
+ const old=getOld();if(!old||!Array.isArray(old.entries)){$('legacySummary').innerHTML='<div class="legacybox">Kein älterer Datensatz im Browser gefunden.</div>';return;}
+ const converted=migrateOld(old),groups=converted.entries.filter(e=>e.type==='group'),unclear=groups.filter(e=>e.muscle==='other');
+ const types=Object.entries(converted.entries.reduce((a,e)=>(a[e.type]=(a[e.type]||0)+1,a),{})).map(([k,n])=>`${k}: ${n}`).join(' · ');
+ $('legacySummary').innerHTML=`<div class="legacybox"><b>${old.entries.length} alte Einträge</b><div>${esc(types)}</div><div>${groups.length} als Muskelsätze umgewandelt${unclear.length?`, davon ${unclear.length} mit zunächst ungeklärter Muskelgruppe (bearbeitbar)`:''}.</div><div>Die V8-Daten bleiben bei einer Übernahme unangetastet.</div></div>`;
+};
+$('redoLegacy').onclick=()=>{const old=getOld();if(!old||!Array.isArray(old.entries)){showToast('Keine V8-Daten im Browser gefunden');return;}
+ if(!confirm('Wirklich V8 erneut übernehmen? Das ERSETZT alle bisherigen V9-Einträge. Bitte vorher ein V9-Backup exportieren.'))return;
+ store=migrateOld(old);save();renderAll();showToast('Alte Daten erneut übernommen.');};
+$('eraseV9').onclick=()=>{if(!confirm('Alle V9-Trainingsdaten und Ziele zurücksetzen? Das alte V8-Backup wird nicht gelöscht.'))return;if(!confirm('Letzte Bestätigung: V9-Speicher vollständig zurücksetzen?'))return;
+ store=defaults();save();resetEntry();renderAll();showToast('V9 zurückgesetzt.');};
+function renderAll(){renderPage(page);if(page!=='dashboard')renderDashboard();if(page!=='calendar')renderCalendar();if(page!=='history')renderHistory();if(page!=='progress')renderProgress();if(page!=='settings')renderSettings();if(page!=='data')renderData();}
+function init(){refreshMuscleSelects();refreshExerciseSelect();refreshTestSelect();resetEntry();renderAll();
+ const m=store.migration||{};if(m.source==='V2–V8'&&m.converted){const n=$('migrationNotice');n.classList.remove('hidden');n.innerHTML=`✓ <b>${m.converted} alte Einträge übernommen.</b> V8 bleibt unverändert. Bitte erstelle unter „Daten & Backup“ zusätzlich eine V9-Sicherung. <button class="textlink" id="dismissMigration">Ausblenden</button>`;$('dismissMigration').onclick=()=>n.classList.add('hidden');}
+}
+init();
+// Kleine Diagnoseschnittstelle für lokale Browsertests (keine Netzwerkanfragen).
+window.TrainingHQV9={version:9,summary,convertOldEntry,migrateOld,parseQuickLine,read:()=>clone(store),goto,renderAll};
+</script>
+</body>
+</html>
